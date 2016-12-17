@@ -15,8 +15,8 @@
             <td><?= h($instance->name) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Schmema') ?></th>
-            <td><?= h($instance->schmema) ?></td>
+            <th scope="row"><?= __('Schema') ?></th>
+            <td><?= h($instance->schema) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>

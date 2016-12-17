@@ -39,6 +39,25 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
   <?= $this->Html->css('skins/_all-skins.min.css'); ?>
   <?= $this->fetch('css'); ?>
 
+<!-- jQuery 2.2.3 -->
+<?= $this->Html->script('../plugins/jQuery/jquery-2.2.3.min.js'); ?>
+<!-- Bootstrap 3.3.6 -->
+<?= $this->Html->script('bootstrap.min.js'); ?>
+<!-- FastClick -->
+<?= $this->Html->script('../plugins/fastclick/fastclick.js'); ?>
+<!-- AdminLTE App -->
+<?= $this->Html->script('app.min.js'); ?>
+<!-- Sparkline -->
+<?= $this->Html->script('../plugins/sparkline/jquery.sparkline.min.js'); ?>
+<!-- jvectormap -->
+<?= $this->Html->script('../plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'); ?>
+<?= $this->Html->script('../plugins/jvectormap/jquery-jvectormap-world-mill-en.js'); ?>
+<!-- SlimScroll 1.3.0 -->
+<?= $this->Html->script('../plugins/slimScroll/jquery.slimscroll.min.js'); ?>
+<!-- ChartJS 1.0.1 -->
+<?= $this->Html->script('../plugins/chartjs/Chart.min.js'); ?>
+
+<?= $this->fetch('script'); ?>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -259,28 +278,5 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 2.2.3 -->
-<?= $this->Html->script('../plugins/jQuery/jquery-2.2.3.min.js'); ?>
-<!-- Bootstrap 3.3.6 -->
-<?= $this->Html->script('bootstrap.min.js'); ?>
-<!-- FastClick -->
-<?= $this->Html->script('../plugins/fastclick/fastclick.js'); ?>
-<!-- AdminLTE App -->
-<?= $this->Html->script('app.min.js'); ?>
-<!-- Sparkline -->
-<?= $this->Html->script('../plugins/sparkline/jquery.sparkline.min.js'); ?>
-<!-- jvectormap -->
-<?= $this->Html->script('../plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'); ?>
-<?= $this->Html->script('../plugins/jvectormap/jquery-jvectormap-world-mill-en.js'); ?>
-<!-- SlimScroll 1.3.0 -->
-<?= $this->Html->script('../plugins/slimScroll/jquery.slimscroll.min.js'); ?>
-<!-- ChartJS 1.0.1 -->
-<?= $this->Html->script('../plugins/chartjs/Chart.min.js'); ?>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<?= $this->Html->script('pages/dashboard2.js'); ?>
-<!-- AdminLTE for demo purposes -->
-<?= $this->Html->script('demo.js'); ?>
-
-<?= $this->fetch('script'); ?>
 </body>
 </html>

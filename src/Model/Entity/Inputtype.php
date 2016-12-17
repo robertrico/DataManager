@@ -4,15 +4,14 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Instance Entity
+ * Inputtype Entity
  *
  * @property int $id
  * @property string $name
- * @property string $schema
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  */
-class Instance extends Entity
+class Inputtype extends Entity
 {
 
     /**

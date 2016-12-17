@@ -3,20 +3,19 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $instance->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $instance->id)]
+                ['action' => 'delete', $inputtype->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $inputtype->id)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Instances'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Inputtypes'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
-<div class="instances form large-9 medium-8 columns content">
-    <?= $this->Form->create($instance) ?>
+<div class="inputtypes form large-9 medium-8 columns content">
+    <?= $this->Form->create($inputtype) ?>
     <fieldset>
-        <legend><?= __('Edit Instance') ?></legend>
+        <legend><?= __('Edit Inputtype') ?></legend>
         <?php
             echo $this->Form->input('name');
-            echo $this->Form->input('schema');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -511,3 +511,8 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<?= $this->Html->script('pages/dashboard2.js'); ?>
+<!-- AdminLTE for demo purposes -->
+<?= $this->Html->script('demo.js'); ?>

@@ -11,7 +11,7 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('schmema') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('schema') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -22,7 +22,7 @@
             <tr>
                 <td><?= $this->Number->format($instance->id) ?></td>
                 <td><?= h($instance->name) ?></td>
-                <td><?= h($instance->schmema) ?></td>
+                <td><?= h($instance->schema) ?></td>
                 <td><?= h($instance->created) ?></td>
                 <td><?= h($instance->modified) ?></td>
                 <td class="actions">

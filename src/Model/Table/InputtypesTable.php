@@ -7,19 +7,19 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Instances Model
+ * Inputtypes Model
  *
- * @method \App\Model\Entity\Instance get($primaryKey, $options = [])
- * @method \App\Model\Entity\Instance newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Instance[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Instance|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Instance patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Instance[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Instance findOrCreate($search, callable $callback = null)
+ * @method \App\Model\Entity\Inputtype get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Inputtype newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Inputtype[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Inputtype|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Inputtype patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Inputtype[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Inputtype findOrCreate($search, callable $callback = null)
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class InstancesTable extends Table
+class InputtypesTable extends Table
 {
 
     /**
@@ -32,7 +32,7 @@ class InstancesTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('instances');
+        $this->table('inputtypes');
         $this->displayField('name');
         $this->primaryKey('id');
 
@@ -53,9 +53,6 @@ class InstancesTable extends Table
 
         $validator
             ->allowEmpty('name');
-
-        $validator
-            ->allowEmpty('schema');
 
         return $validator;
     }

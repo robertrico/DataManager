@@ -4,10 +4,10 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * InstancesFixture
+ * InputtypesFixture
  *
  */
-class InstancesFixture extends TestFixture
+class InputtypesFixture extends TestFixture
 {
 
     /**
@@ -19,7 +19,6 @@ class InstancesFixture extends TestFixture
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 10, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'name' => ['type' => 'string', 'length' => 50, 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
-        'schema' => ['type' => 'string', 'length' => 24, 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         '_constraints' => [
@@ -41,9 +40,8 @@ class InstancesFixture extends TestFixture
         [
             'id' => 1,
             'name' => 'Lorem ipsum dolor sit amet',
-            'schema' => 'Lorem ipsum dolor sit ',
-            'created' => '2016-12-17 19:19:03',
-            'modified' => '2016-12-17 19:19:03'
+            'created' => '2016-12-17 20:16:33',
+            'modified' => '2016-12-17 20:16:33'
         ],
     ];
 }
