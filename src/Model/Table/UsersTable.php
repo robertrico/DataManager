@@ -18,4 +18,5 @@ class UsersTable extends Table
                 'message' => 'Please enter a valid role'
             ]);
     }
+}
 

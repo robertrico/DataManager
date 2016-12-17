@@ -24,19 +24,20 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
-        <li class="header">MAIN NAVIGATION</li>
+        <li class="header">ToolBar</li>
         <li class="active treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <i class="fa fa-dashboard"></i> <span>Instances</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-			<li><?= $this->Html->link('<i class="fa fa-circle-o"></i> Dashboard',['controller'=>'pages','action'=>'dashboard']) ?></li>
-			<li><?= $this->Html->link('<i class="fa fa-circle-o"></i> Dashboard 2',['controller'=>'pages','action'=>'dashboard2']) ?></li>
+			<li><i class="fa fa-circle-o"></i><?= $this->Html->link('Instance 1',['controller'=>'instances','action'=>'getInstance',2]) ?></li>
+			<li><i class="fa fa-circle-o"></i><?= $this->Html->link('Instance 2',['controller'=>'instances','action'=>'getInstance',2]) ?></li>
           </ul>
         </li>
+<!--
         <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
@@ -193,6 +194,7 @@
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+-->
       </ul>
     </section>
     <!-- /.sidebar -->

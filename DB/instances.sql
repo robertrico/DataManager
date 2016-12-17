@@ -1,0 +1,7 @@
+CREATE TABLE instances (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+	schmema VARCHAR(24),
+    created DATETIME DEFAULT NULL,
+    modified DATETIME DEFAULT NULL
+);

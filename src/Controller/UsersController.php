@@ -10,7 +10,7 @@ class UsersController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        //$this->Auth->allow(['add', 'logout']);
+        $this->Auth->allow(['add', 'logout']);
     }
 
      public function index()
@@ -26,6 +26,7 @@ class UsersController extends AppController
 
     public function add()
     {
+		$this->viewBuilder()->layout('login');
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->data);
