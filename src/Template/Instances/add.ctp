@@ -58,7 +58,7 @@
 						<?= $this->Form->input('schema.field1',['class'=>'form-control','placeholder'=>'Instance Name','label'=>'Name']) ?>
 					  </div>
 					  <div class="col-sm-6">
-						<?= $this->Form->input('schema.type1',['class'=>'form-control','placeholder'=>'Instance Name','label'=>'Type']) ?>
+						<?= $this->Form->input('schema.type1',['class'=>'form-control','placeholder'=>'Instance Name','label'=>'Type','options'=>$input_types]) ?>
 					  </div>
 					</div>
 				  </div>
@@ -80,6 +80,10 @@
   </div>
   <!-- /.content-wrapper -->
 
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<!-- Make PHP Vars Available to JS -->
+<script>
+	var input_types = JSON.parse("<?php echo addslashes(json_encode($input_types)); ?>");
+</script>
+
+<!-- Load JS -->
 <?= $this->Html->script('instances/add.js'); ?>
-<!-- AdminLTE for demo purposes -->

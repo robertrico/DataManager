@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 /**
  * Application Controller
@@ -62,6 +63,7 @@ class AppController extends Controller
     public function beforeFilter(Event $event)
     {
 		$this->Auth->allow(['index', 'view', 'display']);
+		$this->set('input_types',TableRegistry::get('Inputtypes')->find('list'));
     }
 
     /**
