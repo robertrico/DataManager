@@ -5,6 +5,8 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Core\Configure;
+use MongoDB\Client;
 
 /**
  * Instances Model
@@ -59,4 +61,12 @@ class InstancesTable extends Table
 
         return $validator;
     }
+
+	public function saveSchema($schema){
+		$details = Configure::read('mdb');
+		$cs = $details['ns'].$details['host'].':'.$details['port'];
+		$mc = new Client($cs);
+		$db = $mc->data_manager->schemas;
+		debug($db);die;
+	}
 }
