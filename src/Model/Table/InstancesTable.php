@@ -4,6 +4,7 @@ namespace App\Model\Table;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
 use Cake\Core\Configure;
 use MongoDB\Client;
@@ -37,6 +38,7 @@ class InstancesTable extends Table
         $this->table('instances');
         $this->displayField('name');
         $this->primaryKey('id');
+		$this->Inputtypes = TableRegistry::get('Inputtypes');
 
         $this->addBehavior('Timestamp');
     }
@@ -67,6 +69,9 @@ class InstancesTable extends Table
 		$cs = $details['ns'].$details['host'].':'.$details['port'];
 		$mc = new Client($cs);
 		$db = $mc->data_manager->schemas;
+		$type = $this->Inputtypes->get($schema['type1']);
+		debug($type);
+		debug($schema);
 		debug($db);die;
 	}
 }

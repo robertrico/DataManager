@@ -52,7 +52,10 @@
 					<!-- /.box-header -->
 					<!-- form start -->
 					  <div class="box-body">
-						<div class="form-group">
+					    <div class="col-sm-12">
+						  <button type="button" id="addSchemaField" class="btn btn-primary pull-right">Add More Fields</button>
+					    </div>
+						<div id="fieldValue" class="form-group">
 						  <div class="col-sm-6">
 							<?= $this->Form->input('schema.field1',['class'=>'form-control','placeholder'=>'Instance Name','label'=>'Name']) ?>
 						  </div>

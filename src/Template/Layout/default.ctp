@@ -33,7 +33,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
   <!-- jvectormap -->
   <?= $this->Html->css('../plugins/jvectormap/jquery-jvectormap-1.2.2.css'); ?>
   <!-- Theme style -->
-  <?= $this->Html->css('AdminLTE.min.css'); ?>
+  <?= $this->Html->css('AdminLTE.css'); ?>
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <?= $this->Html->css('skins/_all-skins.min.css'); ?>
