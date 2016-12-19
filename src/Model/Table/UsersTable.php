@@ -7,6 +7,11 @@ use Cake\Validation\Validator;
 class UsersTable extends Table
 {
 
+	public function initialize(array $config)
+	{
+		$this->belongsToMany('Instances');
+	}
+
     public function validationDefault(Validator $validator)
     {
         return $validator

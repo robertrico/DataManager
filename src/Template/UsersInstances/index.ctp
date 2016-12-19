@@ -1,9 +1,8 @@
-
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-		Instances
+			Associations
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -18,32 +17,30 @@
 
 			<!-- col -->
 			<div class="col-md-12">
-
-				<div class="instances index large-9 medium-8 columns content">
-					<h3><?= __('Instances') ?></h3>
+				<div class="usersInstances index large-9 medium-8 columns content">
 					<table class="table table-striped" cellpadding="0" cellspacing="0">
 						<thead>
 							<tr>
 								<th scope="col"><?= $this->Paginator->sort('id') ?></th>
-								<th scope="col"><?= $this->Paginator->sort('name') ?></th>
-								<th scope="col"><?= $this->Paginator->sort('schema') ?></th>
+								<th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
+								<th scope="col"><?= $this->Paginator->sort('instance_id') ?></th>
 								<th scope="col"><?= $this->Paginator->sort('created') ?></th>
 								<th scope="col"><?= $this->Paginator->sort('modified') ?></th>
 								<th scope="col" class="actions"><?= __('Actions') ?></th>
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach ($instances as $instance): ?>
+							<?php foreach ($usersInstances as $usersInstance): ?>
 							<tr>
-								<td><?= $this->Number->format($instance->id) ?></td>
-								<td><?= h($instance->name) ?></td>
-								<td><?= h($instance->schema) ?></td>
-								<td><?= h($instance->created) ?></td>
-								<td><?= h($instance->modified) ?></td>
+								<td><?= $this->Number->format($usersInstance->id) ?></td>
+								<td><?= $usersInstance->has('user') ? $this->Html->link($usersInstance->user->fullname, ['controller' => 'Users', 'action' => 'view', $usersInstance->user->id]) : '' ?></td>
+								<td><?= $usersInstance->has('instance') ? $this->Html->link($usersInstance->instance->name, ['controller' => 'Instances', 'action' => 'view', $usersInstance->instance->id]) : '' ?></td>
+								<td><?= h($usersInstance->created) ?></td>
+								<td><?= h($usersInstance->modified) ?></td>
 								<td class="actions">
-									<?= $this->Html->link(__('View'), ['action' => 'view', $instance->id]) ?>
-									<?= $this->Html->link(__('Edit'), ['action' => 'edit', $instance->id]) ?>
-									<?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $instance->id], ['confirm' => __('Are you sure you want to delete # {0}?', $instance->id)]) ?>
+									<?= $this->Html->link(__('View'), ['action' => 'view', $usersInstance->id]) ?>
+									<?= $this->Html->link(__('Edit'), ['action' => 'edit', $usersInstance->id]) ?>
+									<?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $usersInstance->id], ['confirm' => __('Are you sure you want to delete # {0}?', $usersInstance->id)]) ?>
 								</td>
 							</tr>
 							<?php endforeach; ?>
@@ -58,6 +55,7 @@
 						<p><?= $this->Paginator->counter() ?></p>
 					</div>
 				</div>
+
 			</div> 
 
 		</div>

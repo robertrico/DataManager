@@ -57,10 +57,10 @@
 					    </div>
 						<div id="fieldValue" class="form-group">
 						  <div class="col-sm-6">
-							<?= $this->Form->input('schema.field1',['class'=>'form-control','placeholder'=>'Instance Name','label'=>'Name']) ?>
+							<?= $this->Form->input('schema.fields.',['id'=>'fields1','class'=>'form-control','placeholder'=>'Instance Name','label'=>'Name']) ?>
 						  </div>
 						  <div class="col-sm-6">
-							<?= $this->Form->input('schema.type1',['class'=>'form-control','placeholder'=>'Instance Name','label'=>'Type','options'=>$input_types]) ?>
+							<?= $this->Form->input('schema.types.',['id'=>'types1','class'=>'form-control','placeholder'=>'Instance Name','label'=>'Type','options'=>$input_types]) ?>
 						  </div>
 						</div>
 					  </div>

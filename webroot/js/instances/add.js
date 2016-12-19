@@ -26,7 +26,7 @@ function FieldCreator(types){
 		inner.addClass(input_type);
 		input.addClass("form-control");
 		input.attr('type',input_type);
-		input.attr('name','schema['+input_name+this.current+']');
+		input.attr('name','schema['+input_name+'][]');
 		input.attr('placeholder',placeholder);
 		input.attr('id','schema-'+input_name+this.current);
 		
@@ -43,8 +43,8 @@ $(document).ready(function(){
 	var field_creator = new FieldCreator(input_types);
 console.log(field_creator);
 	$('#addSchemaField').click(function(){
-		$('#fieldValue').append(field_creator.buildInput('Name','text','field','Enter Field Name'));
-		$('#fieldValue').append(field_creator.buildInput('Type','select','type','Select Type'));
+		$('#fieldValue').append(field_creator.buildInput('Name','text','fields','Enter Field Name'));
+		$('#fieldValue').append(field_creator.buildInput('Type','select','types','Select Type'));
 		field_creator.incrementFieldCount();
 	});
 });

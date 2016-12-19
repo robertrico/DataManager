@@ -50,12 +50,11 @@ class InstancesController extends AppController
     {
         $instance = $this->Instances->newEntity();
         if ($this->request->is('post')) {
-$this->Instances->saveSchema($this->request->data['schema']);
-debug($this->request->data);die;
+			$sid = $this->Instances->saveSchema($this->request->data['schema'])->__toString();
             $instance = $this->Instances->patchEntity($instance, $this->request->data);
+			$instance->schema = (string)$sid;
             if ($this->Instances->save($instance)) {
-                $this->Flash->success(__('The instance has been saved.'));
-
+				$this->Flash->success(__('The instance has been saved.'));
                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The instance could not be saved. Please, try again.'));

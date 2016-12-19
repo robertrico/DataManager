@@ -1,6 +1,8 @@
 <?php
 namespace App\Model\Table;
 
+
+use Cake\Datasource\ConnectionManager;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -8,6 +10,8 @@ use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
 use Cake\Core\Configure;
 use MongoDB\Client;
+use MongoDB\BSON\ObjectID;
+use MongoDB\BSON\UTCDateTime;
 
 /**
  * Instances Model
@@ -34,6 +38,8 @@ class InstancesTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
+
+		$this->belongsToMany('Users');
 
         $this->table('instances');
         $this->displayField('name');
@@ -69,9 +75,19 @@ class InstancesTable extends Table
 		$cs = $details['ns'].$details['host'].':'.$details['port'];
 		$mc = new Client($cs);
 		$db = $mc->data_manager->schemas;
-		$type = $this->Inputtypes->get($schema['type1']);
-		debug($type);
-		debug($schema);
-		debug($db);die;
+		$fixed = array_combine($schema['fields'],$schema['types']);
+		$schema_struct = [
+			'_id' => new ObjectID(),
+			'schema'=>$fixed,
+			'created' => new UTCDateTime(),
+			'modified' => new UTCDateTime(),
+		];
+		$result = $db->insertOne($schema_struct);
+		return $schema_struct['_id'];
+	}
+
+	public function beforeSave(){
+		$conn = ConnectionManager::get('default');
+		$conn->driver()->autoQuoting(true);
 	}
 }
