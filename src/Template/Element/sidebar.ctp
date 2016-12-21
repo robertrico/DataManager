@@ -7,7 +7,7 @@
 		  <?= $this->Html->image('user2-160x160.jpg',['class'=>'img-circle','alt'=>'User Image']) ?>
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><?= $this->request->session()->read('Auth.User.fullname') ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -33,8 +33,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-			<li><i class="fa fa-circle-o"></i><?= $this->Html->link('Instance 1',['controller'=>'instances','action'=>'getInstance',2]) ?></li>
-			<li><i class="fa fa-circle-o"></i><?= $this->Html->link('Instance 2',['controller'=>'instances','action'=>'getInstance',2]) ?></li>
+			<?php foreach($view_instances as $instance): ?>
+				<li><?= $this->Html->link($instance->name,['controller'=>'instances','action'=>'view',$instance->id]) ?></li>
+			<?php endforeach; ?>
           </ul>
         </li>
 <!--

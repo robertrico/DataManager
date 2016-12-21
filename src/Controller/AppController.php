@@ -17,6 +17,7 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
+use Cake\Utility\Hash;
 
 /**
  * Application Controller
@@ -63,6 +64,30 @@ class AppController extends Controller
     public function beforeFilter(Event $event)
     {
 		$this->Auth->allow(['index', 'view', 'display']);
+
+		if($this->request->session()->check('Auth.User')){
+			$usersinstances = TableRegistry::get('UsersInstances');
+
+			$query = $usersinstances->find();
+
+			$query->where([
+				'user_id' => $this->request->session()->read('Auth.User.id')
+			]);
+			$query->contain([
+				'Instances'
+			]);
+			$instances = $query->all();
+			$view_instances = new \stdClass();
+			$i = 0;
+			foreach($instances as $instance){
+				$view_instances->{$i} = new \stdClass();
+				$view_instances->{$i}->id = $instance->instance->id;
+				$view_instances->{$i}->name = $instance->instance->name;
+				$i++;
+			}
+		}
+		$this->set(compact('view_instances'));
+
 		$this->set('input_types',TableRegistry::get('Inputtypes')->find('list'));
     }
 
