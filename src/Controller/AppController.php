@@ -29,6 +29,8 @@ use Cake\Utility\Hash;
  */
 class AppController extends Controller
 {
+	
+	protected $user_instances;
 
     /**
      * Initialization hook method.
@@ -76,7 +78,9 @@ class AppController extends Controller
 			$query->contain([
 				'Instances'
 			]);
-			$instances = $query->all();
+
+			$this->user_instances = $instances = $query->all();
+
 			$view_instances = new \stdClass();
 			$i = 0;
 			foreach($instances as $instance){

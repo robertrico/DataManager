@@ -109,4 +109,12 @@ class InstancesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+	public function addDataRecord($id){
+        $instance = $this->Instances->newEntity();
+debug($this->user_instances);
+		$this->set(compact('instance'));
+        $this->set('_serialize', ['instance']);
+	}
 }
