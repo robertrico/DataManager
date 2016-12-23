@@ -15,6 +15,10 @@
             <td><?= h($inputtype->name) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('HtmlType') ?></th>
+            <td><?= h($inputtype->htmlType) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($inputtype->id) ?></td>
         </tr>

@@ -54,6 +54,9 @@ class InputtypesTable extends Table
         $validator
             ->allowEmpty('name');
 
+        $validator
+            ->allowEmpty('htmlType');
+
         return $validator;
     }
 }

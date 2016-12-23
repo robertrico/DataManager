@@ -20,7 +20,11 @@
 			  <!-- Horizontal Form -->
 			    <div class="box box-warning">
 					<?= $this->Form->create($instance) ?>
-						<?php echo $this->Form->input('name'); ?>
+
+						<?php foreach($schema as $field => $type): ?>
+							<?php echo $this->Form->input($field,['type'=>$input_types{$type}]); ?>
+						<?php endforeach; ?>
+
 						<?= $this->Form->button(__('Submit')) ?>
 					<?= $this->Form->end() ?>
 				</div>

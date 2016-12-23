@@ -29,6 +29,10 @@ use MongoDB\BSON\UTCDateTime;
 class InstancesTable extends Table
 {
 
+	private $details;
+	private $cs;
+	private $mc;
+	private $db;
     /**
      * Initialize method
      *
@@ -47,6 +51,11 @@ class InstancesTable extends Table
 		$this->Inputtypes = TableRegistry::get('Inputtypes');
 
         $this->addBehavior('Timestamp');
+
+		$this->details = Configure::read('mdb');
+		$this->cs = $this->details['ns'].$this->details['host'].':'.$this->details['port'];
+		$this->mc = new Client($this->cs);
+		$this->db = $this->mc->data_manager->schemas;
     }
 
     /**
@@ -71,10 +80,27 @@ class InstancesTable extends Table
     }
 
 	public function saveSchema($schema){
-		$details = Configure::read('mdb');
-		$cs = $details['ns'].$details['host'].':'.$details['port'];
-		$mc = new Client($cs);
-		$db = $mc->data_manager->schemas;
+		$fixed = array_combine($schema['fields'],$schema['types']);
+		$schema_struct = [
+			'_id' => new ObjectID(),
+			'schema'=>$fixed,
+			'created' => new UTCDateTime(),
+			'modified' => new UTCDateTime(),
+		];
+		$result = $this->db->insertOne($schema_struct);
+		return $schema_struct['_id'];
+	}
+
+	public function getSchemaFields($schema_id){
+		$result = $this->db->findOne(['_id'=>new ObjectID($schema_id)]);
+		if(!empty($result)){
+			return $result->schema;
+		}else{
+			throw new NotFoundException('Improper Instance Schema');
+		}
+	}
+
+	public function insertDataRecord($data){
 		$fixed = array_combine($schema['fields'],$schema['types']);
 		$schema_struct = [
 			'_id' => new ObjectID(),

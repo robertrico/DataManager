@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 /**
  * Instances Controller
@@ -10,6 +12,14 @@ use App\Controller\AppController;
  */
 class InstancesController extends AppController
 {
+
+	private $inputtypes;
+
+    public function beforeFilter(Event $event)
+    {
+		parent::beforeFilter($event);
+		$this->inputtypes = TableRegistry::get('Inputtypes')->find('list',['keyField'=>'id','valueField'=>'htmlType'])->toArray();
+	}
 
     /**
      * Index method
@@ -112,9 +122,20 @@ class InstancesController extends AppController
 
 
 	public function addDataRecord($id){
+		if(empty($this->user_instances->$id)){
+            $this->Flash->error(__('You cannot add a datarecord to this instance.'));
+			return $this->redirect(['action' => 'index']);
+		}
+
+		$current_instance = $this->user_instances->{$id};
+
+		$schema = $this->Instances->getSchemaFields($current_instance->schema);
+
+		debug($schema);
+
         $instance = $this->Instances->newEntity();
-debug($this->user_instances);
-		$this->set(compact('instance'));
+		$this->set('input_types',$this->inputtypes);
+		$this->set(compact('instance','fields','schema'));
         $this->set('_serialize', ['instance']);
 	}
 }

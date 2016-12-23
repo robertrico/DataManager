@@ -103,10 +103,12 @@ if (!empty($indexColumns)) {
     </table>
     <div class="paginator">
         <ul class="pagination">
+            <CakePHPBakeOpenTag= $this->Paginator->first('<< ' . __('first')) CakePHPBakeCloseTag>
             <CakePHPBakeOpenTag= $this->Paginator->prev('< ' . __('previous')) CakePHPBakeCloseTag>
             <CakePHPBakeOpenTag= $this->Paginator->numbers() CakePHPBakeCloseTag>
             <CakePHPBakeOpenTag= $this->Paginator->next(__('next') . ' >') CakePHPBakeCloseTag>
+            <CakePHPBakeOpenTag= $this->Paginator->last(__('last') . ' >>') CakePHPBakeCloseTag>
         </ul>
-        <p><CakePHPBakeOpenTag= $this->Paginator->counter() CakePHPBakeCloseTag></p>
+        <p><CakePHPBakeOpenTag= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) CakePHPBakeCloseTag></p>
     </div>
 </div>
