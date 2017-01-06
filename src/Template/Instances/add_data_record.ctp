@@ -16,15 +16,16 @@
 		<div class="row">
 
 			<!-- col -->
-			<div class="col-md-6">
-			  <!-- Horizontal Form -->
-			    <div class="box box-warning">
-					<?= $this->Form->create($instance) ?>
-						<?php echo $this->Form->input('name'); ?>
-						<?= $this->Form->button(__('Submit')) ?>
-					<?= $this->Form->end() ?>
-				</div>
-			</div> 
+			<?php
+				$view_form = new \StdClass();
+				foreach($view_schema as $input => $key){
+					$view_form->{$input} =$input_blocks->{$key}; 
+				}
+				echo $this->element('view_one',[
+					'instance'=>$instance,
+					'view_form'=>$view_form
+				]);
+			?>
 			<!-- /.col -->
 
 			<div class="col-md-6">

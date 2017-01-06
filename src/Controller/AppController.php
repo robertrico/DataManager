@@ -31,6 +31,7 @@ class AppController extends Controller
 {
 	
 	protected $user_instances;
+	protected $input_types;
 
     /**
      * Initialization hook method.
@@ -69,6 +70,7 @@ class AppController extends Controller
 
 		if($this->request->session()->check('Auth.User')){
 			$usersinstances = TableRegistry::get('UsersInstances');
+			$this->input_types = TableRegistry::get('Inputtypes')->find('all')->toArray();
 
 			$query = $usersinstances->find();
 
@@ -79,17 +81,18 @@ class AppController extends Controller
 				'Instances'
 			]);
 
-			$this->user_instances = $instances = $query->all();
+			$instances = $query->all();
 
 			$view_instances = new \stdClass();
-			$i = 0;
 			foreach($instances as $instance){
+				$i = $instance->instance->id;
 				$view_instances->{$i} = new \stdClass();
 				$view_instances->{$i}->id = $instance->instance->id;
 				$view_instances->{$i}->name = $instance->instance->name;
-				$i++;
+				$view_instances->{$i}->schema = $instance->instance->schema;
 			}
 		}
+		$this->user_instances = $view_instances;
 		$this->set(compact('view_instances'));
 
 		$this->set('input_types',TableRegistry::get('Inputtypes')->find('list'));

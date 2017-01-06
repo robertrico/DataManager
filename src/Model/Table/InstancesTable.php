@@ -86,6 +86,16 @@ class InstancesTable extends Table
 		return $schema_struct['_id'];
 	}
 
+	public function getSchema($schema_id){
+		$details = Configure::read('mdb');
+		$cs = $details['ns'].$details['host'].':'.$details['port'];
+		$mc = new Client($cs);
+		$db = $mc->data_manager->schemas;
+
+		$result = $db->findOne(['_id'=>new ObjectId($schema_id)]);
+		return $result;
+	}
+
 	public function beforeSave(){
 		$conn = ConnectionManager::get('default');
 		$conn->driver()->autoQuoting(true);

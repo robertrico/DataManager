@@ -2,6 +2,10 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Core\Configure;
+use MongoDB\Client;
+use MongoDB\BSON\ObjectID;
+use MongoDB\BSON\UTCDateTime;
 
 /**
  * Instances Controller
@@ -11,6 +15,15 @@ use App\Controller\AppController;
 class InstancesController extends AppController
 {
 
+	private $mongo_client;
+    public function initialize()
+    {
+		parent::initialize();
+		$details = Configure::read('mdb');
+		$cs = $details['ns'].$details['host'].':'.$details['port'];
+		$this->mongo_client = new Client($cs);
+        $this->loadComponent('DynamicParser');
+    }
     /**
      * Index method
      *
@@ -113,8 +126,23 @@ class InstancesController extends AppController
 
 	public function addDataRecord($id){
         $instance = $this->Instances->newEntity();
-debug($this->user_instances);
-		$this->set(compact('instance'));
+		$sid = $this->user_instances->{$id}->schema;
+		$schema = $this->Instances->getSchema($sid);
+		$view_schema = $schema->schema;
+		$input_blocks = $this->input_types;
+		$input_obj = new \StdClass();
+		foreach($input_blocks as $input){
+			$input_obj->{$input->id} = $input;
+		}
+		$input_blocks = $input_obj;
+		if($this->request->is('post')){
+			foreach($this->request->data as $key => $value){
+				$this->request->data[$key] = $this->DynamicParser->parseDate($value,'Y-m-d\TH:i','MongoDB\BSON\UTCDateTime');
+			}
+			$db = $this->mongo_client->data_manager->{$sid};
+			$db->insertOne($this->request->data);
+		}
+		$this->set(compact('instance','view_schema','input_blocks'));
         $this->set('_serialize', ['instance']);
 	}
 }
