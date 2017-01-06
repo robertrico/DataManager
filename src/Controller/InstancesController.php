@@ -6,6 +6,8 @@ use Cake\Core\Configure;
 use MongoDB\Client;
 use MongoDB\BSON\ObjectID;
 use MongoDB\BSON\UTCDateTime;
+use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 /**
  * Instances Controller
@@ -15,7 +17,9 @@ use MongoDB\BSON\UTCDateTime;
 class InstancesController extends AppController
 {
 
+	private $inputtypes;
 	private $mongo_client;
+
     public function initialize()
     {
 		parent::initialize();
@@ -23,7 +27,14 @@ class InstancesController extends AppController
 		$cs = $details['ns'].$details['host'].':'.$details['port'];
 		$this->mongo_client = new Client($cs);
         $this->loadComponent('DynamicParser');
+		$this->inputtypes = TableRegistry::get('Inputtypes')->find('list',['keyField'=>'id','valueField'=>'htmlType'])->toArray();
     }
+
+    public function beforeFilter(Event $event)
+    {
+		parent::beforeFilter($event);
+	}
+
     /**
      * Index method
      *
@@ -125,6 +136,15 @@ class InstancesController extends AppController
 
 
 	public function addDataRecord($id){
+		if(empty($this->user_instances->$id)){
+            $this->Flash->error(__('You cannot add a datarecord to this instance.'));
+			return $this->redirect(['action' => 'index']);
+		}
+
+		$current_instance = $this->user_instances->{$id};
+
+		$schema = $this->Instances->getSchemaFields($current_instance->schema);
+
         $instance = $this->Instances->newEntity();
 		$sid = $this->user_instances->{$id}->schema;
 		$schema = $this->Instances->getSchema($sid);

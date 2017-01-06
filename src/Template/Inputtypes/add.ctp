@@ -1,4 +1,3 @@
-
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -18,11 +17,16 @@
 
 			<!-- col -->
 			<div class="col-md-6">
-			  <!-- Horizontal Form -->
-			    <div class="box box-warning">
+				<div class="inputtypes form large-9 medium-8 columns content">
 					<?= $this->Form->create($inputtype) ?>
-						<?php echo $this->Form->input('name'); ?>
-						<?= $this->Form->button(__('Submit')) ?>
+					<fieldset>
+						<legend><?= __('Add Inputtype') ?></legend>
+						<?php
+							echo $this->Form->input('name');
+							echo $this->Form->input('htmlType');
+						?>
+					</fieldset>
+					<?= $this->Form->button(__('Submit')) ?>
 					<?= $this->Form->end() ?>
 				</div>
 			</div> 

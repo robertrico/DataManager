@@ -16,6 +16,7 @@
         <legend><?= __('Edit Inputtype') ?></legend>
         <?php
             echo $this->Form->input('name');
+            echo $this->Form->input('htmlType');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

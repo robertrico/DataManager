@@ -3,6 +3,8 @@
 /vendor/*
 /config/app.php
 
+composer.lock
+tmp/debug_kit.sqlite
 /tmp/cache/models/*
 !/tmp/cache/models/empty
 /tmp/cache/persistent/*

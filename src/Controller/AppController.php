@@ -66,8 +66,6 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
-		$this->Auth->allow(['index', 'view', 'display']);
-
 		if($this->request->session()->check('Auth.User')){
 			$usersinstances = TableRegistry::get('UsersInstances');
 			$this->input_types = TableRegistry::get('Inputtypes')->find('all')->toArray();
@@ -83,6 +81,7 @@ class AppController extends Controller
 
 			$instances = $query->all();
 
+			$this->user_instances = new \stdClass();
 			$view_instances = new \stdClass();
 			foreach($instances as $instance){
 				$i = $instance->instance->id;

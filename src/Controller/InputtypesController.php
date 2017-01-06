@@ -54,7 +54,7 @@ class InputtypesController extends AppController
             if ($this->Inputtypes->save($inputtype)) {
                 $this->Flash->success(__('The inputtype has been saved.'));
 
-                return $this->redirect(['action' => 'add']);
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The inputtype could not be saved. Please, try again.'));
             }
