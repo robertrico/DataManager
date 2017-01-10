@@ -135,7 +135,17 @@ class InstancesController extends AppController
     }
 
 
-	public function addDataRecord($id){
+	public function mainMenu($id)
+	{
+		$sid = $this->user_instances->{$id}->schema;
+		$db = $this->mongo_client->data_manager->{$sid};
+		$schema = $this->Instances->getSchema($sid)->schema;
+		$records = $db->find();
+		$this->set(compact('records','schema'));
+	}
+
+	public function addDataRecord($id)
+	{
 		if(empty($this->user_instances->$id)){
             $this->Flash->error(__('You cannot add a datarecord to this instance.'));
 			return $this->redirect(['action' => 'index']);
@@ -161,7 +171,53 @@ class InstancesController extends AppController
 			}
 			$db = $this->mongo_client->data_manager->{$sid};
 			$db->insertOne($this->request->data);
+            $this->Flash->success(__('Data Record added!'));
+			return $this->redirect(['action' => 'addDataRecord',$id]);
 		}
+		$this->set(compact('instance','view_schema','input_blocks'));
+        $this->set('_serialize', ['instance']);
+	}
+
+	public function editDataRecord($cid,$id)
+	{
+		if(empty($this->user_instances->$cid)){
+            $this->Flash->error(__('You cannot add a datarecord to this instance.'));
+			return $this->redirect(['action' => 'index']);
+		}
+
+		$current_instance = $this->user_instances->{$cid};
+
+		$schema = $this->Instances->getSchemaFields($current_instance->schema);
+
+        $instance = $this->Instances->newEntity();
+		$sid = $this->user_instances->{$cid}->schema;
+		$schema = $this->Instances->getSchema($sid);
+		$view_schema = $schema->schema;
+		$input_blocks = $this->input_types;
+		$input_obj = new \StdClass();
+		foreach($input_blocks as $input){
+			$input_obj->{$input->id} = $input;
+		}
+		$input_blocks = $input_obj;
+		$db = $this->mongo_client->data_manager->{$sid};
+		$options = ['_id'=>new ObjectId($id)];
+		$record = $db->findOne($options);
+
+		if($this->request->is('post')){
+			foreach($this->request->data as $key => $value){
+				$this->request->data[$key] = $this->DynamicParser->parseDate($value,'Y-m-d\TH:i','MongoDB\BSON\UTCDateTime');
+			}
+			$db = $this->mongo_client->data_manager->{$sid};
+			$db->replaceOne($options,$this->request->data);
+		}else{
+			$this->request->data = $record;
+		}
+
+		foreach($this->request->data as $key => $value){
+			$this->request->data[$key] = $this->DynamicParser->mongoDateToDateTime($value,'Y-m-d\TH:i');
+		}
+
+
 		$this->set(compact('instance','view_schema','input_blocks'));
         $this->set('_serialize', ['instance']);
 	}

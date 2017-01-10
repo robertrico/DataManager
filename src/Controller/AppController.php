@@ -45,6 +45,7 @@ class AppController extends Controller
     public function initialize()
     {
         parent::initialize();
+		$this->user_instances = [];
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
@@ -90,8 +91,8 @@ class AppController extends Controller
 				$view_instances->{$i}->name = $instance->instance->name;
 				$view_instances->{$i}->schema = $instance->instance->schema;
 			}
+			$this->user_instances = $view_instances;
 		}
-		$this->user_instances = $view_instances;
 		$this->set(compact('view_instances'));
 
 		$this->set('input_types',TableRegistry::get('Inputtypes')->find('list'));

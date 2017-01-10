@@ -17,4 +17,18 @@ class DynamicParserComponent extends Component
 			return $date;
 		}
     }
+
+	public function mongoDateToDateTime($mongo,$format=null)
+	{
+		if($mongo instanceof UTCDatetime){
+			$mongo = $mongo->toDateTime();
+			if(empty($format)){
+				return $mongo;
+			}else{
+				return $mongo->format($format);
+			}
+		}else{
+			return $mongo;
+		}
+	}
 }
