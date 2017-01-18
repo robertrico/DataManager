@@ -56,6 +56,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <?= $this->Html->script('../plugins/slimScroll/jquery.slimscroll.min.js'); ?>
 <!-- ChartJS 1.0.1 -->
 <?= $this->Html->script('../plugins/chartjs/Chart.min.js'); ?>
+<?= $this->Html->script('site.js'); ?>
 
 <?= $this->fetch('script'); ?>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

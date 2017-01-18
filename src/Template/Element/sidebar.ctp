@@ -34,7 +34,7 @@
           </a>
           <ul class="treeview-menu">
 			<?php foreach($view_instances as $instance): ?>
-				<li><?= $this->Html->link($instance->name,['controller'=>'instances','action'=>'view',$instance->id]) ?></li>
+				<li><?= $this->Html->link($instance->name,['controller'=>'instances','action'=>'mainMenu',$instance->id]) ?></li>
 			<?php endforeach; ?>
           </ul>
         </li>

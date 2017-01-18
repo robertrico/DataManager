@@ -141,7 +141,7 @@ class InstancesController extends AppController
 		$db = $this->mongo_client->data_manager->{$sid};
 		$schema = $this->Instances->getSchema($sid)->schema;
 		$records = $db->find();
-		$this->set(compact('records','schema'));
+		$this->set(compact('records','schema','id'));
 	}
 
 	public function addDataRecord($id)
@@ -166,20 +166,23 @@ class InstancesController extends AppController
 		}
 		$input_blocks = $input_obj;
 		if($this->request->is('post')){
+			$this->viewBuilder()->layout(false);
 			foreach($this->request->data as $key => $value){
 				$this->request->data[$key] = $this->DynamicParser->parseDate($value,'Y-m-d\TH:i','MongoDB\BSON\UTCDateTime');
 			}
 			$db = $this->mongo_client->data_manager->{$sid};
 			$db->insertOne($this->request->data);
-            $this->Flash->success(__('Data Record added!'));
-			return $this->redirect(['action' => 'addDataRecord',$id]);
+			ob_clean();
+			echo 'success';
+			exit(0);
 		}
-		$this->set(compact('instance','view_schema','input_blocks'));
+		$this->set(compact('instance','view_schema','input_blocks','id'));
         $this->set('_serialize', ['instance']);
 	}
 
 	public function editDataRecord($cid,$id)
 	{
+		$this->viewBuilder()->layout(false);;
 		if(empty($this->user_instances->$cid)){
             $this->Flash->error(__('You cannot add a datarecord to this instance.'));
 			return $this->redirect(['action' => 'index']);
