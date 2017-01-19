@@ -23,9 +23,8 @@
               <h3 class="box-title">Records</h3>
 
               <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                <button id="mainMenuMin" type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <!--<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
               </div>
             </div>
             <!-- /.box-header -->
@@ -66,9 +65,61 @@
           <!-- /.box -->
 		</div>
 
-		 <div class="col-md-8">
+		 <div class="col-md-12">
+          <!-- MAP & BOX PANE -->
+          <div class="box box-warning">
+            <div class="box-header with-border">
+              <h3 class="box-title">Add Ons</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="row">
+                <div class="col-md-12" id="leadView">
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+		</div>
+		<!-- /.row -->
+		 <div class="col-md-7">
           <!-- MAP & BOX PANE -->
           <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Active Record</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="row">
+                <div class="col-md-12" id="leadView">
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+		</div>
+		<!-- /.row -->
+		 <div class="col-md-5">
+          <!-- MAP & BOX PANE -->
+          <div class="box box-danger">
             <div class="box-header with-border">
               <h3 class="box-title">Active Record</h3>
 
@@ -105,10 +156,12 @@ $(document).ready(function(){
 
 	$('.viewLead').click(function(){
 		main_menu.viewLead($(this).attr('data-id'))
+		$('#mainMenuMin').click();
 	});
 
 	$('.addLead').click(function(){
 		main_menu.addLead();
+		$('#mainMenuMin').click();
 	});
 });
 </script>

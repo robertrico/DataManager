@@ -37,6 +37,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <?= $this->Html->css('skins/_all-skins.min.css'); ?>
+  <?= $this->Html->css('site.css'); ?>
   <?= $this->fetch('css'); ?>
 
 <!-- jQuery 2.2.3 -->
